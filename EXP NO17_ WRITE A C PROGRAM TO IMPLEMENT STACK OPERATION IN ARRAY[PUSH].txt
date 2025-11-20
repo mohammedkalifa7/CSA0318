@@ -1,0 +1,19 @@
+#include <stdio.h>
+#define MAX 5
+int stack[MAX], top = -1;
+void push(int val) {
+    if (top == MAX - 1)
+        printf("Stack Overflow\n");
+    else {
+        top++;
+        stack[top] = val;
+        printf("%d pushed into stack\n", val);
+    }
+}
+int main() {
+    int val;
+    printf("Enter value to push: ");
+scanf("%d", &val);
+    push(val);
+    return 0;
+}

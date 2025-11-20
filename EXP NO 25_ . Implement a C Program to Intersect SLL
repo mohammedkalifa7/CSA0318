@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct node {
+    int data;
+    struct node *next;
+};
+struct node* createList(int n) {
+    struct node *head = NULL, *newnode, *temp;
+    int i, val;
+    for(i = 0; i < n; i++) {
+        newnode = (struct node*)malloc(sizeof(struct node));
+        printf("Enter data for node %d: ", i + 1);
+        scanf("%d", &val);
+        newnode->data = val;
+        newnode->next = NULL;
+        if(head == NULL)
+            head = temp = newnode;
+        else {
+            temp->next = newnode;
+            temp = newnode;
+        }
+    }
+    return head;
+}
+int main() {
+    struct node *head1 = NULL, *head2 = NULL, *temp1, *temp2;
+    int n1, n2;
+    printf("Enter number of nodes in 1st list: ");
+    scanf("%d", &n1);
+    head1 = createList(n1);
+    printf("Enter number of nodes in 2nd list: ");
+    scanf("%d", &n2);
+    head2 = createList(n2);
+    printf("\nIntersection elements: ");
+    temp1 = head1;
+    while(temp1 != NULL) {
+        temp2 = head2;
+        while(temp2 != NULL) {
+            if(temp1->data == temp2->data)
+                printf("%d ", temp1->data);
+            temp2 = temp2->next;
+        }
+        temp1 = temp1->next;
+    }
+    return 0;
+}
